@@ -55,7 +55,7 @@ clean:
 
 
 program: $(OBJDIR)/$(PROJ_NAME).elf
-	openocd-0.6.1 -f program.cfg
+	openocd -f program.cfg
 
 
 # Dependdencies
