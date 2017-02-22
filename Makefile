@@ -1,12 +1,20 @@
 PROJ_NAME=main
 
+# application code
 SRCS = src/main.c \
        src/system_stm32f4xx.c \
        src/startup_stm32f4xx.s
 
+# library code
+SRCS += \
+       libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.c \
+       libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.c
+
 
 CC=arm-none-eabi-gcc
 OBJCOPY=arm-none-eabi-objcopy
+
+#FULLASSERT = -DUSE_FULL_ASSERT
 
 OBJDIR = build
 
@@ -19,6 +27,7 @@ CFLAGS += -mfloat-abi=soft
 LDFLAGS = -Wl,-Map,$(OBJDIR)/$(PROJ_NAME).map -g -Tstm32f4_flash.ld
 
 CFLAGS += -Isrc -I. -Ilibraries/STM32F4xx_StdPeriph_Driver/inc -Ilibraries/CMSIS/ST/STM32F4xx/Include -Ilibraries/CMSIS/Include
+CFLAGS += -DUSE_STDPERIPH_DRIVER $(FULLASSERT)
 
 OBJS := $(SRCS:.c=.o)
 OBJS := $(OBJS:.s=.o)
