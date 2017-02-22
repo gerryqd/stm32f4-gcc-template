@@ -2,6 +2,8 @@ PROJ_NAME=main
 
 # application code
 SRCS = src/main.c \
+       src/delay.c \
+       src/stm32f4xx_it.c \
        src/system_stm32f4xx.c \
        src/startup_stm32f4xx.s
 
